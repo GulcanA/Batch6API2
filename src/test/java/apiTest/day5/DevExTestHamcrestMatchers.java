@@ -54,7 +54,7 @@ public class DevExTestHamcrestMatchers {
         given().accept(ContentType.JSON)
                 .queryParam("id", 200)
                 .get(baseURI + "/api/profile/userQuery").
-                then().statusCode(200)
+               then().statusCode(200)
                 .and().assertThat().contentType("application/json")
                 .and().assertThat()
                 .body("id", equalTo(200),
@@ -96,6 +96,17 @@ public class DevExTestHamcrestMatchers {
                 .assertThat().statusCode(200)
                 .contentType("application/json")
                 .body("user.name", hasItem("ibrahim"));
+    }
+
+    @Test
+    public void test6() {
+        given().accept(ContentType.JSON)
+                .when().log().all()
+                .get(baseURI + "/api/profile")
+                .then()
+                .assertThat().statusCode(200)
+                .contentType("application/json")
+                .body("user.name", hasItems("ibrahim","mehmet"));
     }
 
     @Test

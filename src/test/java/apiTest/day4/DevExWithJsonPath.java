@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 import java.util.Map;
 
+import static io.restassured.RestAssured.given;
 import static org.testng.Assert.*;
 
 public class DevExWithJsonPath {
@@ -18,7 +19,7 @@ public class DevExWithJsonPath {
 
     @Test
     public void test1(){
-        Response response = RestAssured.given().accept(ContentType.JSON).
+        Response response = given().accept(ContentType.JSON).
                 and().queryParam("id", "909")
                 .when().get(devExBaseUrl + "/api/profile/userQuery");
 
@@ -65,7 +66,7 @@ public class DevExWithJsonPath {
                      "profileId": 11
                     }
          */
-        Response response=RestAssured.given().accept(ContentType.JSON)
+        Response response= given().accept(ContentType.JSON)
                 .and().queryParam("id", "29")
                 .when().get(devExBaseUrl + "/api/profile/userQuery");
 
